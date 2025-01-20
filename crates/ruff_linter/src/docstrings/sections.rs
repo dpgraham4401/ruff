@@ -270,7 +270,7 @@ impl ExactSizeIterator for SectionContextsIter<'_> {}
 struct SectionContextData {
     kind: SectionKind,
 
-    /// The size of the indentation of the section name.
+    /// The size of section name indentation.
     indent_size: TextSize,
 
     /// Range of the section name, relative to the [`Docstring::body`]
@@ -464,7 +464,7 @@ fn is_docstring_section(
         return false;
     }
 
-    // Determine if this is a sub-section within another section, like `args` in:
+    // Determine if this is a subsection within another section, like `args` in:
     // ```python
     // def func(args: tuple[int]):
     //     """Toggle the gizmo.
