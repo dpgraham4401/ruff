@@ -42,6 +42,7 @@ pub(crate) fn definitions(checker: &mut Checker) {
         Rule::MissingDashedUnderlineAfterSection,
         Rule::DocstringStartsWithThis,
         Rule::EmptyDocstring,
+        Rule::OutOfOrderDocstring,
         Rule::EmptyDocstringSection,
         Rule::MissingTrailingPeriod,
         Rule::MissingTerminalPunctuation,
@@ -216,6 +217,9 @@ pub(crate) fn definitions(checker: &mut Checker) {
             };
 
             if !pydocstyle::rules::not_empty(checker, &docstring) {
+                continue;
+            }
+            if !pydocstyle::rules::out_of_order_docstring(checker, &docstring) {
                 continue;
             }
             if checker.enabled(Rule::UnnecessaryMultilineDocstring) {
